@@ -1,36 +1,86 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pozadie</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background-image: url('https://api.prod.tuke.sk/smb/medias/2025/07/LF_Placeholder_Image.jpg?workSpaceId=7');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diplomová práca – chatbot</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+
+  /* POZADIE */
+  background-image: url("https://api.prod.tuke.sk/smb/medias/2025/07/LF_Placeholder_Image.jpg?workSpaceId=7");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* LOGÁ PO BOKOCH */
+.side-logo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 800px;        /* VEĽKOSŤ */
+  opacity: 1;       /* PRIESVITNOSŤ */
+  pointer-events: none;
+}
+
+.side-logo.left {
+  left: -50px;         /* mierne mimo obrazovky */
+}
+
+.side-logo.right {
+  right: -50px;
+}
+
+/* CHAT */
+#flat-chat {
+  width: 520px;
+  height: 800px;
+  z-index: 2;
+}
+</style>
+
 </head>
 <body>
-  <script type="text/javascript">
-  (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: '69e0d757e762a93855ab397d' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production',
-          voice: {
-            url: "https://runtime-api.voiceflow.com"
-          }
-        });
+
+<!-- LOGÁ -->
+<img class="side-logo left" src="https://api.prod.tuke.sk/smb/medias/2025/07/LF_Placeholder_Image.jpg?workSpaceId=7">
+<img class="side-logo right" src="https://api.prod.tuke.sk/smb/medias/2025/07/LF_Placeholder_Image.jpg?workSpaceId=7">
+
+<!-- CHAT -->
+<div id="flat-chat"></div>
+
+<script>
+(function(d, t) {
+  var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+  v.onload = function() {
+    window.voiceflow.chat.load({
+      verify: { projectID: '69e0d757e762a93855ab397d' },
+      url: 'https://general-runtime.voiceflow.com',
+      versionID: 'production',
+      voice: {
+        url: 'https://runtime-api.voiceflow.com'
+      },
+      render: {
+        mode: 'embedded',
+        target: document.getElementById('flat-chat')
       }
-      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-  })(document, 'script');
+    });
+  }
+  v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
+  v.type = "text/javascript";
+  s.parentNode.insertBefore(v, s);
+})(document, 'script');
 </script>
+
 </body>
 </html>
