@@ -20,6 +20,8 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
+
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Arial, sans-serif;
 }
 
 .side-logo {
@@ -44,6 +46,185 @@ body {
   height: 800px;
   z-index: 2;
 }
+
+/* INFO IKONA */
+.info-button {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: rgba(34, 34, 34, 0.85);
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 600;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Arial, sans-serif;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+
+.info-button:hover {
+  background: #ffffff;
+  color: #222222;
+}
+
+/* TMAVÉ PREKRYTIE */
+.info-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 20;
+  justify-content: center;
+  align-items: center;
+}
+
+/* INFO OKNO */
+.info-modal {
+  width: 720px;
+  height: 860px;
+  background: #242424;
+  color: #ffffff;
+  padding: 70px 80px 60px;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Arial, sans-serif;
+}
+
+.info-modal h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.info-modal h2 {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.info-title {
+  margin-top: 180px;
+  text-align: center;
+}
+
+.info-title h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.info-title p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.info-content {
+  margin-top: 130px;
+  font-size: 12px;
+  line-height: 1.85;
+  font-weight: 400;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  column-gap: 24px;
+  margin-bottom: 2px;
+}
+
+.info-row div {
+  font-size: 12px;
+}
+
+.info-label {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.info-footer {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  bottom: 42px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.close-button {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Arial, sans-serif;
+}
+
+.close-button:hover {
+  color: #cccccc;
+}
+
+@media (max-width: 800px) {
+  #flat-chat {
+    width: 92vw;
+    height: 78vh;
+  }
+
+  .info-modal {
+    width: 90vw;
+    height: 88vh;
+    padding: 50px 36px 46px;
+  }
+
+  .info-title {
+    margin-top: 110px;
+  }
+
+  .info-content {
+    margin-top: 90px;
+    font-size: 11px;
+  }
+
+  .info-row {
+    grid-template-columns: 1fr;
+    margin-bottom: 10px;
+  }
+
+  .info-row div,
+  .info-label {
+    font-size: 11px;
+  }
+
+  .info-footer {
+    position: absolute;
+    left: 36px;
+    right: 36px;
+    bottom: 32px;
+    font-size: 13px;
+  }
+}
 </style>
 
 </head>
@@ -52,8 +233,63 @@ body {
 <img class="side-logo left" src="https://api.prod.tuke.sk/smb/medias/2025/07/LF_Placeholder_Image.jpg?workSpaceId=7">
 <img class="side-logo right" src="https://api.prod.tuke.sk/smb/medias/2025/07/LF_Placeholder_Image.jpg?workSpaceId=7">
 
-<div id="flat-chat"></div>
+<button class="info-button" id="openInfo" aria-label="Zobraziť informácie">i</button>
 
+<div class="info-overlay" id="infoOverlay">
+  <div class="info-modal">
+    <button class="close-button" id="closeInfo" aria-label="Zavrieť informačné okno">&times;</button>
+
+    <h1>Technická univerzita v Košiciach</h1>
+    <h2>Letecká fakulta</h2>
+
+    <div class="info-title">
+      <h3>
+        TVORBA CHATOVACIEHO ROBOTA PRE<br>
+        LETECKÝ PODNIK
+      </h3>
+      <p>Diplomová práca</p>
+    </div>
+
+    <div class="info-content">
+      <div class="info-row">
+        <div class="info-label">Študijný program:</div>
+        <div>Manažérstvo leteckej dopravy</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">Študijný odbor:</div>
+        <div>Doprava</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">Školiace pracovisko:</div>
+        <div>Katedra manažmentu leteckej prevádzky</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">Školiteľ:</div>
+        <div>Ing. Jozef Galanda, PhD., Ing. Paed. IGIP</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">Autor:</div>
+        <div>Bc. Peter Magda</div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-label">Zdroj:</div>
+        <div>Diplomová práca – chatbot pre letecký podnik</div>
+      </div>
+    </div>
+
+    <div class="info-footer">
+      <div>2026 Košice</div>
+      <div>Bc. Peter Magda</div>
+    </div>
+  </div>
+</div>
+
+<div id="flat-chat"></div>
 <script type="text/javascript">
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -75,6 +311,31 @@ body {
 	  v.type = "text/javascript"; 
 	  s.parentNode.insertBefore(v, s);
   })(document, 'script');
+
+  const openInfo = document.getElementById('openInfo');
+  const closeInfo = document.getElementById('closeInfo');
+  const infoOverlay = document.getElementById('infoOverlay');
+
+  openInfo.addEventListener('click', function() {
+    infoOverlay.style.display = 'flex';
+  });
+
+  closeInfo.addEventListener('click', function() {
+    infoOverlay.style.display = 'none';
+  });
+
+  infoOverlay.addEventListener('click', function(event) {
+    if (event.target === infoOverlay) {
+      infoOverlay.style.display = 'none';
+    }
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      infoOverlay.style.display = 'none';
+    }
+  });
 </script>
+
 </body>
 </html>
